@@ -8,14 +8,22 @@ import GuessList from "../GuessList";
 import EndGameBanner from "../EndGameBanner/EndGameBanner";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-// Pick a random word on every pageload.
-const answer = sample(WORDS);
-// To make debugging easier, we'll log the solution in the console.
-console.info({ answer });
-
 function Game() {
+  const [answer, setAnswer] = React.useState(() => {
+    const firstAnswer = sample(WORDS);
+    console.info({ firstAnswer });
+    return firstAnswer;
+  });
   const [word, setWord] = React.useState("");
   const [wordList, setWordList] = React.useState([]);
+
+  const handleRestart = () => {
+    const newAnswer = sample(WORDS);
+    console.info({ newAnswer });
+    setAnswer(newAnswer);
+    setWord("");
+    setWordList([]);
+  };
 
   const handleInputChange = (value) => {
     setWord(value.toUpperCase());
@@ -26,7 +34,6 @@ function Game() {
     if (word.length < 5) {
       console.log("The word must have 5 characters!");
     } else {
-      console.log(word);
       const nextWord = {
         label: word,
         id: crypto.randomUUID(),
@@ -58,6 +65,7 @@ function Game() {
           win={win}
           answer={answer}
           numOfGuesses={wordList.length}
+          handleRestart={handleRestart}
         />
       )}
     </>
