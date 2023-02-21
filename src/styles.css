@@ -96,6 +96,10 @@ h1 {
   margin-bottom: 4px;
 }
 
+.guess-results p {
+  font-size: 1.25rem;
+}
+
 .cell {
   position: relative;
   width: 20%;

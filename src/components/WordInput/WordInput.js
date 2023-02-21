@@ -1,22 +1,6 @@
 import React from "react";
 
-function WordInput() {
-  const [word, setWord] = React.useState("");
-
-  const handleInputChange = (value) => {
-    setWord(value.toUpperCase());
-  };
-
-  const handleInputSubmit = (event) => {
-    event.preventDefault();
-    if (word.length < 5) {
-      console.log("The word must have 5 characters!");
-    } else {
-      console.log(word);
-      setWord("");
-    }
-  };
-
+function WordInput({ handleInputSubmit, handleInputChange, word }) {
   return (
     <form
       className="guess-input-wrapper"
