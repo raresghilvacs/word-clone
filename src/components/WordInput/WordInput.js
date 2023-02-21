@@ -1,6 +1,6 @@
 import React from "react";
 
-function WordInput({ handleInputSubmit, handleInputChange, word }) {
+function WordInput({ handleInputSubmit, handleInputChange, word, disabled }) {
   return (
     <form
       className="guess-input-wrapper"
@@ -10,6 +10,7 @@ function WordInput({ handleInputSubmit, handleInputChange, word }) {
       <input
         type="text"
         id="word-input"
+        disabled={disabled}
         value={word}
         maxLength={5}
         onChange={(e) => handleInputChange(e.target.value)}
